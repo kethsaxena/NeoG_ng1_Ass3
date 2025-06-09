@@ -8,7 +8,7 @@
       name="description"
       content="Get your Twitter link just from userlink"
     />
-    <title>Github URL Generator</title>
+    <title>Tweet MSG generator</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
@@ -19,94 +19,38 @@
     <header class="container">
       <hgroup>
         <h1>Tweet Link  Generator</h1>
-        <p>generate a custom tweet link</p>
+        <p>GENERATE a custom tweet link</p>
       </hgroup>
     </header>
     <main class="container">
       <fieldset role="group" >
-        <input type ="text" id="github" placeholder="Enter your Github username"/>
-        <input type="button" id="generateURL" value="Generate URL"/>
+        <input type ="text" id="TweetMSG" placeholder="Enter your Custom Twitter / X message"/>
+        <input type="button" id="genTweetLink" value="Generate URL"/>
       </fieldset>
       <div id="app"></div>
     </main>
-    <footer class="container neog-footer">
-      <small>
-        go from zero to hero at full stack development with
-        <a href="https://neog.camp">neog.camp</a>
-      </small>
-    </footer>
-    <!-- <script>
-      // TASK 1
-      // const username = "Kethsaxena";
-      // function greetUser() {
-      //   console.log("Hello " + username);
-      // }
+    <script id="NeoG_ng1_Ass3">
+      // Select elements
+      const inputMessage = document.getElementById("TweetMSG");
+      const buttonGenerate = document.getElementById("genTweetLink");
+      const appElement = document.getElementById("app");
 
-      // greetUser();
+      // Function to generate WhatsApp link
+      function getTweetMsg(message) {
+        let encodedMsg = encodeURIComponent(message);
+        return  "https://twitter.com/home/intent/tweet" +  '?text=' + encodedMsg;
+      }
 
-      //console.log(greetUser(username));
-
-      // TASK 2
-
-      // greetUser();
-
-      // //console.log(greetUser(username));
-
-      // function greetPerson(username) {
-      //   console.log("Hello " + username + "! Welcome to our website!");
-      // }
-
-      // // greetPerson("Ajay");
-      // // greetPerson("Kidambi Srikanth");
-      // // greetPerson("Lakshay Sen");
-
-      // function formattedMessage(message) {
-      //   const resultingMessage = "*" + message + "*";
-      //   return resultingMessage;
-      // }
-
-      // console.log(formattedMessage("Hello World"));
-
-      // const result = formattedMessage("Good Morning");
-      // function combineStrings(string1, string2) {
-      //   const combined = string1 + " " + string2;
-      //   return combined;
-      // }
-      // console.log(combineStrings("Bhima", "Sen"));
-    </script> -->
-    <!-- <script id="ng1.2"> 
-    // TASK 1
-    const username = "Kethsaxena";
-
-    function getGitHubURL(username) {
-      return "https://github.com/"+username;
-    }
-
-    const appElement = document.getElementById("app")
-    appElement.innerText=getGitHubURL(username);
-
-    </script> -->
-    <script id="ng1.3"> 
-    // TASK 1
-    const username = "Kethsaxena";
-
-    function getGitHubURL(username) {
-      return "https://github.com/"+username;
-    }
-
-    function handleGenerateClick(){
-      const githubURL = getGitHubURL(inputElement.value);
-      appElement.innerHTML = githubURL
-    }
-
-    //OBJECTS
-    const inputElement = document.getElementById("github")
-    const buttonElement = document.getElementById("generateURL")   
-    const appElement = document.getElementById("app")
-
-    //appElement.innerText = 
-    buttonElement.addEventListener("click",handleGenerateClick)
-
-    </script>
+      // Handle click
+      function handleGenerateClick() {
+        const message = inputMessage.value;
+        // Generate URL
+        const TwitterURL = getTweetMsg(message);
+        // Show the URL as a clickable link
+        appElement.innerHTML = TwitterURL;
+      }
+      // Event Listener
+      buttonGenerate.addEventListener("click", handleGenerateClick);
+</script>
   </body>
 </html>
